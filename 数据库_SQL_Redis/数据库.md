@@ -304,16 +304,9 @@ binlog与redo log类似，它也是在数据提交前，保存更新日志，但
 
 <https://www.cnblogs.com/shujiying/p/11347632.html>
 
-# SQL优化
+# 6. SQL优化                                                                                                                                                          
 
-## 数据插入优化
-
-| 1.插入前，禁用索引                                                                                                                                                                               |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 2.修改事务的提交方式（变多次提交为一次提交） insert into test values(1,2); insert into test values(1,3); insert into test values(1,4); //合并多条为一条 insert into test values(1,2),(1,3),(1,4) |
-| 3.插入后，不禁用索引                                                                                                                                                                             |
-
-## 6.2. 单机优化
+## 6.1. 单机优化
 
 ### 1. 慢查询
 
@@ -340,7 +333,13 @@ index(覆盖索引)/where(回表)/filesort(order by)/temporary(group by 临时�
 | filesort      | 并不是说通过磁盘文件进行排序，而只是告诉我们进行了一个排序操作而已(只有在order by 数据列的时候才可能会出现using filesort)  (1)修改逻辑，不在mysql中使用order by而是在应用中自己进行排序  (2)使用mysql索引，将待排序的内容放到索引中，直接利用索引的排序 |
 | temporary     | group by 临时表                                                                                                                                                                                                                                         |
 
-## 6.3. 集群优化
+### 5. 数据插入优化
+
+1.插入前，禁用索引                                                                                                                                                             
+2.修改事务的提交方式（变多次提交为一次提交） insert into test values(1,2); insert into test values(1,3); insert into test values(1,4); //合并多条为一条 insert into test values(1,2),(1,3),(1,4)
+3.插入后，不禁用索引 
+
+## 6.2. 集群优化
 
 ### 1. SQL/Redis主从复制
 
@@ -374,7 +373,7 @@ index(覆盖索引)/where(回表)/filesort(order by)/temporary(group by 临时�
 |      | 垂直分库：按照业务将表分不到不同的数据库，每个库可以放在不同的服务器 |
 |      | 水平分库                                                     |
 
-## 6.4. 缓存redis
+## 6.3. 缓存redis
 
 防止每次请求都发到数据库上，使用缓存，降低连接数据库操作、数据库处理操作次数，提高数据库性能 
 
