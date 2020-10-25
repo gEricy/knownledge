@@ -19,4 +19,4 @@
 12. 分布式事务之CAP/BASE/2PC/3PC/TCC
 13. 高并发系统设计，如双11秒杀系统
 14. 海量数据处理
-15. 源码阅读：Ngnix
+15. 源码阅读：libco/libevent/Glusterfs/Ngnix
