@@ -54,7 +54,37 @@ void test() {
 }
 ```
 
-(A) 如果是字符串，可以分成多个以空白符（包括回车换行）分隔的字符串，如"hello world"可以分为"hello" " world"，分割前后的两个字符串是等价的； (B) 如果是表达式（包括参数列表），可以直接分成多行书写，无需折行符； (C) 折行符'\'后应紧跟换行，不允许再出现别的空白符，如' ','\t','\v'等；
+##### enum与日志打印
+
+```c
+typedef enum {
+    TYPE_STAT_INIT = 0,
+    TYPE_STAT_START,
+    TYPE_STAT_STOP,
+    TYPE_STAT_MAX
+} type_stat_t;
+
+/* 用于打印日志 */
+static char* s_type_stat[TYPE_STAT_MAX] = 
+{
+    "TYPE_STAT_INIT",
+    "TYPE_STAT_START",
+    "TYPE_STAT_STOP"
+};
+
+void print_log()
+{
+    type_stat_t sts;
+
+    // ...
+
+    logger.info("type_stat[%s], ... ...", s_type_stat[sts], ..., ...); // 根据不同的枚举类型，打印日志
+
+    // ...
+}
+```
+
+
 
 ---
 
@@ -90,6 +120,17 @@ void test() {
 **目录穿越**：攻击者能访问任意目录，应该验证字符串中是否包含“截断字符串”、./、../
 
 **缓冲区溢出**：数值int溢出、strncpy拷贝数据溢出、局部变量栈溢出（8M）
+
+```c
+char buf[TMP_BUF_SIZE];
+snprintf(buf, TMP_BUF_SIZE - 1, "/proc/%d/cmdline", pid);  // n为缓冲区可接收长度-1
+
+char proc_name[TMP_BUF_SIZE];
+strncpy(proc_name, &buf[i + 1], TMP_BUF_SIZE - 1);  // // n为缓冲区可接收长度-1
+proc_name[TMP_BUF_SIZE - 1] = '\0';
+```
+
+
 
 ----
 
