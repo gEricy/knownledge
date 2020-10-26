@@ -65,11 +65,11 @@ typedef enum {
 } type_stat_t;
 
 /* 用于打印日志 */
-static char* s_type_stat[TYPE_STAT_MAX] = 
+static char* s_type_stat_str[TYPE_STAT_MAX] = 
 {
-    "TYPE_STAT_INIT",
-    "TYPE_STAT_START",
-    "TYPE_STAT_STOP"
+    [TYPE_STAT_INIT]  = "TYPE_STAT_INIT",
+    [TYPE_STAT_START] = "TYPE_STAT_START",
+    [TYPE_STAT_STOP]  = "TYPE_STAT_STOP"
 };
 
 void print_log()
@@ -78,7 +78,7 @@ void print_log()
 
     // ...
 
-    logger.info("type_stat[%s], ... ...", s_type_stat[sts], ..., ...); // 根据不同的枚举类型，打印日志
+    logger.info("type_stat[%s], ... ...", s_type_stat_str[sts], ..., ...); // 根据不同的枚举类型，打印日志
 
     // ...
 }
