@@ -9,7 +9,7 @@
 2. Unix网络编程
 3. TCP/IP协议栈
 4. [数据库: 关系型/NOSQL](https://github.com/gEricy/knownledge/tree/master/A_%E6%95%B0%E6%8D%AE%E5%BA%93_SQL_Redis)
-5. 中间件: 缓存/消息队列/ZK
+5. 中间件: 缓存/消息队列/[Zookeeper](https://github.com/gEricy/knownledge/tree/master/B_Zookeeper)
 6. Reactor反应堆事件库
 8. 数据结构与算法
 9. C++设计模式与解耦
