@@ -18,7 +18,8 @@
 12. [分布式事务之CAP/BASE/2PC/3PC/TCC](https://github.com/gEricy/knownledge/blob/master/X_%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1_%E4%B8%80%E8%87%B4%E6%80%A7.md)
 13. [高并发系统设计，如双11秒杀系统](https://github.com/gEricy/knownledge/blob/master/X_%E5%88%86%E5%B8%83%E5%BC%8F/%E5%8F%8C%E5%8D%81%E4%B8%80%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1.md)
 14. 海量数据处理
-15. 源码阅读: [libco](https://github.com/gEricy/libco) / [libevent](https://github.com/gEricy/libevent) / [Glusterfs](https://github.com/gEricy/glusterfs) / Ngnix
+
+15. 源码阅读: [libco](https://github.com/gEricy/libco) / [libevent](https://github.com/gEricy/libevent) / [Glusterfs](https://github.com/gEricy/glusterfs) / Ngnix
 
 
 
@@ -29,5 +30,3 @@
 1. [功能模块开发流程](https://github.com/gEricy/knownledge/blob/master/Z_%E6%88%91%E7%9A%84%E6%88%90%E9%95%BF%E7%BB%8F%E5%8E%86/1-%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B.md)
 2. [怎样尽可能避免写出像shit一样的代码](https://github.com/gEricy/knownledge/blob/master/Z_%E6%88%91%E7%9A%84%E6%88%90%E9%95%BF%E7%BB%8F%E5%8E%86/2_%E6%80%8E%E6%A0%B7%E5%B0%BD%E5%8F%AF%E8%83%BD%E9%81%BF%E5%85%8D%E5%86%99%E5%87%BA%E5%83%8Fshit%E4%B8%80%E6%A0%B7%E7%9A%84%E4%BB%A3%E7%A0%81.md)
 3. [踩坑经历](https://github.com/gEricy/knownledge/tree/master/Z_%E6%88%91%E7%9A%84%E6%88%90%E9%95%BF%E7%BB%8F%E5%8E%86/%E8%B8%A9%E5%9D%91%E5%8E%86%E7%A8%8B)
-15. 源码阅读：libco/libevent/Glusterfs/Ngnix
-16. 微服务架构
