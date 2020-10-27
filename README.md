@@ -12,7 +12,7 @@
 5. 中间件: 缓存/消息队列/[Zookeeper](https://github.com/gEricy/knownledge/tree/master/B_Zookeeper)
 6. Reactor反应堆事件库
 8. 数据结构与算法
-9. C++设计模式与解耦
+9. [C++设计模式与解耦](https://github.com/gEricy/knownledge/tree/master/D_%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%9D%E7%BB%B4)
 10. 计网/OS/HTTP
 11. [分布式锁](https://github.com/gEricy/knownledge/blob/master/X_%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1_%E4%B8%80%E8%87%B4%E6%80%A7.md)
 12. [分布式事务之CAP/BASE/2PC/3PC/TCC](https://github.com/gEricy/knownledge/blob/master/X_%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1_%E4%B8%80%E8%87%B4%E6%80%A7.md)
