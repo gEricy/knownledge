@@ -122,12 +122,45 @@ void print_log()
 **缓冲区溢出**：数值int溢出、strncpy拷贝数据溢出、局部变量栈溢出（8M）
 
 ```c
-char buf[TMP_BUF_SIZE];
-snprintf(buf, TMP_BUF_SIZE - 1, "/proc/%d/cmdline", pid);  // n为缓冲区可接收长度-1
+// 将src所指向的字符串中以src地址开始的前n个字节复制到dest所指的数组中，并返回被复制后的dest
+// 返回值为char*，是为了方便，连环使用。
+char *strncpy(char *dest, const char *src, int n) --> 参数3：缓冲区长度
 
-char proc_name[TMP_BUF_SIZE];
-strncpy(proc_name, &buf[i + 1], TMP_BUF_SIZE - 1);  // // n为缓冲区可接收长度-1
-proc_name[TMP_BUF_SIZE - 1] = '\0';
+注释：如果n < len(src)，只是将src的前n个字符复制到dest的前n个字符，不自动添加'\0'
+     此时，结果dest不包括'\0'，需要再手动添加一个'\0'
+例：
+    strncpy(pastrword, client->chap_in.pastrword, plen);
+    strncpy(strd->life_file, life_file, SIZE_256B - 1);
+    strncpy(path->dev_path, dev_path, sizeof(path->dev_path) - 1);
+    strncpy(sb->sb_strd_uuid, param->strd_uuid, strD_UUID_LEN - 1);
+
+char buf[1024];   // buf 是字符数组
+len = sizeof(buf) - 1;
+
+char* buf = "ABCD";   // buf 是指针
+len = strlen(buf)    
+
+// 将src所指字符串的前n个字符添加到dest所指字符串的结尾处，并覆盖dest所指字符串结尾的'\0'
+// 从而实现字符串的连接。
+char * strncat(char *dest, const char *src, size_t n);  --> 参数3：参数2长度
+
+strncat(dest, src, sizeof(src) - 1);
+strncat(dest, src, strlen(src));
+
+// 参数2表示：缓冲区dest_str的大小
+int snprintf(char* dest_str,size_t size,const char* format,...);
+
+ret = snprintf(path, _MAX_PATH, "%s", dir);
+if (ret < 0 || ret >= _MAX_PATH) {
+    astrert(ret >= 0 && ret < _MAX_PATH);
+    return;
+}
+
+snprintf(path + ret, _MAX_PATH - ret, "%c%s", split, fname); 
+ret = snprintf(buffer + used, len - used, "cache mode: %s state: %s \n", xxxxx);
+
+# 字符串转换    
+atoll(str); ---> strtoll(str, NULL, 10);
 ```
 
 
@@ -137,3 +170,23 @@ proc_name[TMP_BUF_SIZE - 1] = '\0';
 ##### **MTU - 发送数据包不得超过MTU**
 
 由于TCP可靠性特点，可知，TCP会对包切片成合适大小再发送，不会出现大于MTU的情况。而UDP无此机制，发送超过MTU大小的包到网络中，有可能超出的包会直接被丢弃
+
+---
+
+##### 定时器用法
+定时器的使用经常会发生问题，注意：
+定时器可能需要传入一个全局的参数，在启动定时器之前一定要初始化该参数，否则可能会出现访问未初始化的数据，导致踩内存
+，一般编码流程如下。
+
+```c
+Args* args = ....; // new, assign  创建/赋值
+ret = timer_start(func, args);
+if (ret == NULL) {
+	free(args)
+}
+```
+
+
+
+---
+
