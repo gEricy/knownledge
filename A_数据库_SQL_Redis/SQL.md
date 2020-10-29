@@ -127,7 +127,7 @@ innodb存储引擎的B+Tree的索引叶子节点data域，存放的是（主键�
 
 
 
-### 1.3.4.  索引下推
+### 1.3.4. 索引下推
 
 英文：Index Condition PushDown
 
@@ -232,7 +232,7 @@ select \* from where name like 'zhang%' and age\>18
 
 第三范式：非主键列只依赖于主键，不依赖于其他非主键（非主键不能传递依赖于主键）
 
-# 4. 事务 
+# 4. 事务 :kissing_smiling_eyes:
 
 引出事务的原因，多用户、多程序、多线程，保证数据一致性，引出事务
 
