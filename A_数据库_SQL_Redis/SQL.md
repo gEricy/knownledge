@@ -490,7 +490,7 @@ call insert_student_process('Jamed',26,\@id); //调用存储过程select \@id;
 
 # 11. 思考
 
-## 11.1. [select \*] 和 [select 全部字段] 2种写法有什么优缺点
+## 11.1. select \* 与 select全部字段
 
 |                      | **select \***    | **select 全部字段** |
 |----------------------|------------------|---------------------|
@@ -500,7 +500,7 @@ call insert_student_process('Jamed',26,\@id); //调用存储过程select \@id;
 | 是否可以建立索引优化 | 否               | 是                  |
 | 可读性               | 低               | 高                  |
 
-## 11.2. varchar、char区别
+## 11.2. varchar/char区别
 
 (1) 定长/变长：是否由实际存储内容决定
 
