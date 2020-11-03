@@ -111,6 +111,14 @@ HTTPS = HTTP + 加密 + 认证 + 完整性校验，HTTPS是身披SSL外壳的HTT
 
 
 
+问题：既然HTTPS那么安全可靠，为什么所有的Web网站不都使用HTTPS？
+
+- HTTPS加密通信会消耗更多的CPU和内存资源，导致处理请求数量降低。网络负载可能会慢2~100倍。
+
+#### HTTPS安全通信机制
+
+![](https://github.com/gEricy/knownledge/blob/master/HTTP/HTTPS%E5%AE%89%E5%85%A8%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6.png)
+
 ---
 
 ### HTTP/2.0
@@ -143,3 +151,17 @@ HTTPS = HTTP + 加密 + 认证 + 完整性校验，HTTPS是身披SSL外壳的HTT
 - 首部压缩
 
 - TLS：更安全的SSL
+
+
+
+---
+
+### Web攻击技术
+
+- XSS跨站脚本攻击
+- SQL注入攻击
+- OS命令注入攻击
+- 目录穿越攻击
+- 会话劫持
+- 密码破解
+- DDOS攻击
