@@ -226,7 +226,7 @@ select \* from where name like 'zhang%' and age\>18
 
 第一范式：属性列不可拆分（保证属性列的原子性）
 
-第二范式：消除了非主属性部门依赖于候选码
+第二范式：消除了非主属性部分依赖于候选码
 
 - （sno,cno,姓名,score,系名,系主任）候选码是（sno,cno）。“姓名”部分依赖于“sno”，因此不满足2NF，应该拆表，即（sno,姓名,系名,系主任）+（sno,cno,score）
 
@@ -235,7 +235,7 @@ select \* from where name like 'zhang%' and age\>18
 
 # 4. 事务 :kissing_smiling_eyes:
 
-引出事务的原因，多用户、多程序、多线程，保证数据一致性，引出事务
+引出事务的原因：多用户/多程序/多线程，存在同时对表中一个元组进行DML操作，如果不进行控制，就会造成数据不一致性
 
 ## 4.1. 特性：ACID
 
