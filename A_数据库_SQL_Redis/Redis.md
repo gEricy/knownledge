@@ -279,7 +279,7 @@ ZREVRANGE hotNews:20190722 0 10 WITH SCORES  # 展示当日排行前十
 
 
 
-# 8. Redis 6.0 的那些事
+# 8. [Redis 6.0 的那些事](https://www.cnblogs.com/madashu/p/12832766.html)
 
 **Redis单线程？多线程？**
 
@@ -330,7 +330,23 @@ ZREVRANGE hotNews:20190722 0 10 WITH SCORES  # 展示当日排行前十
 
 - 还需要注意的是，线程数并不是越大越好，官方认为超过了8个基本就没什么意义了
 
+----
 
+**开启多线程后，是否会存在线程并发安全问题？**
+
+![](https://github.com/gEricy/knownledge/blob/master/A_%E6%95%B0%E6%8D%AE%E5%BA%93_SQL_Redis/%E5%8E%9F%E7%90%86%E5%9B%BE/Redis6.0%E5%A4%9A%E7%BA%BF%E7%A8%8B.png)
+
+从上面的实现机制可以看出，Redis的多线程部分只是用来处理网络数据的读写和协议解析，（执行命令仍然是主线程顺序执行）。所以，不需要去考虑控制 key、lua、事务，LPUSH/LPOP 等等的并发及线程安全问题。
+
+---
+
+**Redis6.0的多线程和Memcached多线程模型进行对比**
+
+- 相同点
+  - 都采用了 master线程、worker 线程的模型
+- 不同点
+  - Memcached 执行主逻辑也是在 worker 线程里，模型更加简单，实现了真正的线程隔离，符合我们对线程隔离的常规理解（即：主线程采用 libevent 监听 listen、accept 的读事件，事件响应后将连接信息的数据结构封装起来，选择合适的工作线程进行后续的数据操作）
+  - Redis 把处理逻辑交还给 master 线程，虽然一定程度上增加了模型复杂度，但也解决了线程并发安全等问题
 
 # 9. Redis面试总结
 
