@@ -6,7 +6,9 @@ python的list模拟 `栈`
 
 ---
 
-python的list模拟 `队列`
+python的list模拟 `双端队列`
 
-- 入队: queue.append(x)
-- 出队: queue.pop(0)
+- 尾插入队: queue.append(x)
+- 队头出队: queue.pop(0)
+- 队尾出队: queue.pop(-1)
+
