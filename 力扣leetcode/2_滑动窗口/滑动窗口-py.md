@@ -30,43 +30,6 @@ class Solution(object):
         return mret
 ```
 
-#### 滑动窗口的最大值
-
-（单调递减队列）
-
-
-- 注意点
-  - 单调队列中，保存的是数组下标index，而不是数组值nums[index]
-  - 什么时候，ans中添加结果？ 窗口大小等于k时，即：当 r-1 >= k 时
-- 步骤
-  1. 索引r从0开始，一直向后滑动
-  2. 首先，必须保证队列的单调性
-     - 踢除 nums[r] > nums[queue[-1]] 的 nums[queue[-1]]
-  3. 然后，删除过期队头，保证窗口的定长性（因为r进入窗口后，可能会造成窗口长度超过定长k）
-     - r-`queue[0]`+1 > k，要剔除队头
-  4. 元素入队：queue.append(r)
-  5. 保存滑动窗口的最大值: 当`r-l > k`时，ans.append(nums[queue[0]])
-
-```python
-class Solution(object):
-    def maxSlidingWindow(self, nums, k):
-        ans = []
-        queue = []  # 单调队列(由大到小), 保存了“下标”
-        for r in range(len(nums)):
-            # 保证队列单调
-            while queue != [] and nums[r] > nums[queue[-1]]:  # 当前元素nums[r] > 队尾元素: 移除队尾
-                queue.pop(-1)
-            # 删除过期队头元素
-            if queue != [] and r-queue[0]+1 > k:
-                queue.pop(0)
-            # r进入窗口
-            queue.append(r)
-            # 当窗口大小 >= k时, 保存结果
-            if r+1 >= k:
-                ans.append(nums[queue[0]])
-        return ans
-```
-
 
 
 #### strstr
@@ -113,5 +76,45 @@ int strStr(char * haystack, char * needle)
     }
     return -1;
 }
+```
+
+
+
+---
+
+#### 滑动窗口的最大值
+
+（单调递减队列）
+
+- 注意点
+  - 单调队列中，保存的是数组下标index，而不是数组值nums[index]
+  - 什么时候，ans中添加结果？ 窗口大小等于k时，即：当 r-1 >= k 时
+- 步骤
+  1. 索引r从0开始，一直向后滑动
+  2. 首先，必须保证队列的单调性
+     - 踢除 nums[r] > nums[queue[-1]] 的 nums[queue[-1]]
+  3. 然后，删除过期队头，保证窗口的定长性（因为r进入窗口后，可能会造成窗口长度超过定长k）
+     - r-`queue[0]`+1 > k，要剔除队头
+  4. 元素入队：queue.append(r)
+  5. 保存滑动窗口的最大值: 当`r-l > k`时，ans.append(nums[queue[0]])
+
+```python
+class Solution(object):
+    def maxSlidingWindow(self, nums, k):
+        ans = []
+        queue = []  # 单调队列(由大到小), 保存了“下标”
+        for r in range(len(nums)):
+            # 保证队列单调
+            while queue != [] and nums[r] > nums[queue[-1]]:  # 当前元素nums[r] > 队尾元素: 移除队尾
+                queue.pop(-1)
+            # 删除过期队头元素
+            if queue != [] and r-queue[0]+1 > k:
+                queue.pop(0)
+            # r进入窗口
+            queue.append(r)
+            # 当窗口大小 >= k时, 保存结果
+            if r+1 >= k:
+                ans.append(nums[queue[0]])
+        return ans
 ```
 
