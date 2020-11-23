@@ -120,11 +120,6 @@ nums1 中数字 x 的下一个更大元素是指 x 在 nums2 中对应位置的右边的第一个比 x 大的
 ```python
 class Solution(object):
     def nextGreaterElement(self, nums1, nums2):
-        """
-        :type nums1: List[int]
-        :type nums2: List[int]
-        :rtype: List[int]
-        """
         stack = []
         hash = {}
         for e in nums2:
@@ -160,10 +155,6 @@ class Solution(object):
 ```python
 class Solution(object):
     def nextGreaterElements(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[int]
-        """
         db_nums = nums * 2  # 将两个数组拼接
         size = len(nums)    # 原数组长度
         ret = [-1] * size   # 初始化结果[-1, -1, -1, ... ...]
