@@ -12,6 +12,8 @@
 
 - 执行顺序：from...where...group by...having...select...order by...
 
+SELECT * FROM press AS p INNER JOIN authors AS a ON p.city=a.city 
+
 # SQL关系型数据库
 
 # 1. 索引
