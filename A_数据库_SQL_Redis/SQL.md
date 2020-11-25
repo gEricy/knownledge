@@ -6,11 +6,13 @@
 
 ---
 
-*select* [ALL\|DISTANCE] \<目标列表达式\> *from* \<表明或视图名\> where \<条件表达式\> group by \<列名\> having \<条件表达式\> order by \<列名\> ASC\|DESC
+*select* [ALL\|DISTANCE] \<目标列表达式\> *from* \<表名或视图名\> where \<条件表达式\> group by \<列名\> having \<条件表达式\> order by \<列名\> ASC\|DESC
 
 - 书写顺序：select...from...where...group by...having...order by.. 
 
 - 执行顺序：from...where...group by...having...select...order by...
+
+SELECT * FROM press AS p INNER JOIN authors AS a ON p.city=a.city 
 
 # SQL关系型数据库
 
