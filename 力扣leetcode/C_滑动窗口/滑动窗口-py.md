@@ -9,7 +9,7 @@ python语法，弹出list的首元素：list.pop(0)
 
 
 
-#### 无重复字符的最长字串
+#### 无重复字符的最长字串 （该题解法不是最优解）
 
 给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。
 
@@ -24,7 +24,7 @@ class Solution(object):
                 win.append(ch)
                 mret = max(mret, len(win))
             else:
-                while ch in win:
+                while ch in win: # 每次都查找窗口，时间复杂度过大！
                     win.pop(0)   # 弹出队头 list.pop(0); list.pop()默认弹出队尾
                 win.append(ch)
         return mret

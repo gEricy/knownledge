@@ -23,6 +23,8 @@ public:
 
 #### 删除指定元素
 
+- 与下题解法一模一样
+
 ```C++
 class Solution {
 public:
@@ -124,4 +126,4 @@ public:
 };
 ```
 
-#### 
+
