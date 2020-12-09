@@ -47,6 +47,16 @@ class Solution(object):
 
 
 
+#### [LeetCode 面试题59 - II. 队列的最大值](https://segmentfault.com/a/1190000021962984):slightly_smiling_face:
+
+要求：获取队列的最大值的时间复杂度为O(1)
+
+
+
+---
+
+
+
 ------
 
 :smile_cat:下面的题目都是 `单调栈`
