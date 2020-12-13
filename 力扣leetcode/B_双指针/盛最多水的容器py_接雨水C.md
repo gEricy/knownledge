@@ -1,25 +1,29 @@
 #### [盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/)
 
+- 注意点
+
+  >  长度：r-l，不是r-l+1
+  >
+  > height[l], height[r]：谁小，就放弃谁
+
 ```python
 class Solution(object):
     def maxArea(self, height):
-        ret = 0
+        max_ans = 0
         
         l,r = 0,len(height)-1
 
         while l<r:
             area = min(height[l], height[r]) * (r-l)
-            ret = max(ret, area)
+            max_ans = max(max_ans, area)
             if height[r] > height[l]:
                 l+=1
             else:
                 r-=1
-        return ret
+        return max_ans
 ```
 
-- 注意点
-  - 长度：r-l，不是r-l+1
-  - height[l], height[r]：谁小，就放弃谁
+
 
 ---
 
@@ -27,7 +31,7 @@ class Solution(object):
 
 #### 接雨水
 
-可以说，接雨水，是最简单的“困难”级别的题了
+可以说，接雨水，是最简单的**“困难”**级别的题了
 
 ```c++
 class Solution {

@@ -15,7 +15,11 @@ char * strcpy(char *dst,const char *src)   /* 形参: const */
 
     return dst;
 }
+```
 
+
+
+```c
 void* memcpy(void* dst, const void* src, size_t n)
 {
     assert(dst && src && n >= 0);
@@ -29,7 +33,11 @@ void* memcpy(void* dst, const void* src, size_t n)
     
     return dst;
 }
+```
 
+
+
+```c
 void* memmove(void* dst, const void* src, size_t n)
 {
     assert(dst && src && n >= 0);

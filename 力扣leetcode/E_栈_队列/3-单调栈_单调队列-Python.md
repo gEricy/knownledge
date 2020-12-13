@@ -34,12 +34,12 @@ class Solution(object):
             # 1. 保持队列的单调性
             while queue and nums[r] > nums[queue[-1]]:  # [5,3,2], 进入4, 要依次删除[2,3]
                 queue.pop(-1)
-            # 删除过期头部
+            # 2. 删除过期头部
             if queue and r-queue[0]+1 > k:  # 删除5
                 queue.pop(0)
-            # 元素入队列
+            # 3. 元素入队列
             queue.append(r)
-            # 加入结果集合
+            # 4. 加入结果集合
             if r+1 >= k:
                 ans.append(nums[queue[0]])  # 当前窗口的最大值: nums[queue[0]]
         return ans
@@ -61,7 +61,7 @@ class Solution(object):
 
 :smile_cat:下面的题目都是 `单调栈`
 
-#### [739. 每日温度](https://leetcode-cn.com/problems/daily-temperatures/)
+#### [739. 每日温度](https://leetcode-cn.com/problems/daily-temperatures/)?:slightly_smiling_face:
 
 ```python
 请根据每日气温列表，重新生成一个列表。对应位置的输出为：要想观测到更高的气温，至少需要等待的天数。如果气温在这之后都不会升高，请在该位置用 0 来代替。
@@ -70,17 +70,19 @@ class Solution(object):
 	你的输出应该是 [1, 1, 4, 2, 1, 1, 0, 0]。
 ```
 
+栈中存放的元素，是下标，不是nums[i]
+
 ```python
 class Solution(object):
     def dailyTemperatures(self, T):
-        ret = [0] * len(T)  # 保存结果[0, 0, 0, ... ...]
+        ans = [0] * len(T)  # 保存结果[0, 0, 0, ... ...]
         stack = []  # 单调栈, 存放下标
         for i in range(len(T)):
             while stack and T[stack[-1]] < T[i]:  # 栈顶温度 < 当前温度
-                ret[stack[-1]] = i - stack[-1]    # 更新对应位置的结果值
+                ans[stack[-1]] = i - stack[-1]    # 【出栈时】, 更新栈顶(下标位置)的结果值
                 stack.pop()
             stack.append(i)
-        return ret
+        return ans
 ```
 
 
@@ -95,6 +97,8 @@ class Solution(object):
 解释: 移除掉三个数字 4, 3, 和 2 形成一个新的最小的数字 1219	。
 ```
 
+栈中存放的元素是 num[i]，不是下标
+
 ```python
 class Solution(object):
     def removeKdigits(self, num, k):
@@ -105,7 +109,7 @@ class Solution(object):
                 k -= 1
             stack.append(e)  # 始终都将当前元素加入栈
         ret = stack[:-k] if(k > 0) else stack
-        return "".join(ret).lstrip('0') or '0'
+        return "".join(ret).lstrip('0') or '0'  # 最后，stack中剩下的元素，穿起来，就是结果
 ```
 
 

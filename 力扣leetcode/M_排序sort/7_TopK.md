@@ -32,7 +32,7 @@ using namespace std;
 
 vector<int> getTopK(vector<vector<int>> vec,int K){
 	vector<int> ret;
-	priority_queue<pair<int,int>> PQ;
+	priority_queue<pair<int,int>> PQ;  // pair: <nums[i], 该数所属第几个数组>
     
 	//用vec[i].back()，每个数组的最大的数，建立大根堆PQ
 	for (int i = 0; i < vec.size(); i++){

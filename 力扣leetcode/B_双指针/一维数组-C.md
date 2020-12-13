@@ -77,8 +77,10 @@ nums2 = [2,5,6],       n = 3
 ```c++
 class Solution {
 public:
-    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
-        int size = m+n-1;
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) 
+    {
+        int size = m+n-1; /* 从后向前赋值 */
+        
         int r1 = m-1, r2 = n-1;
         while(r1>=0 && r2>=0){  // 注意：循环条件 >= 0
             if (nums1[r1] > nums2[r2]){
@@ -108,7 +110,7 @@ public:
     void sortColors(vector<int>& nums) {
         int size = nums.size();
         int i = 0, l = 0, r = size-1;
-        while(i <= r) {  // 循环条件
+        while(i <= r) {  // 循环条件 <=
             switch(nums[i]) {
             case 0: // 碰到0，交换，l/i都向前走
                 swap(nums[l++], nums[i++]);
@@ -117,7 +119,7 @@ public:
                 i++;
                 break;
             case 2:
-                swap(nums[r--], nums[i]); // 碰到2，交换，只r向前走，i不变
+                swap(nums[r--], nums[i]); // 碰到2，交换，只r向前走，【i不变】
                     		// i不++, 因为可能是2和0换，换完之后0要再换到最初的位置
                 break;
             }

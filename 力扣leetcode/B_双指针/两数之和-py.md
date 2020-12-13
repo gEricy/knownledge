@@ -15,7 +15,7 @@ class Solution(object):
         return []
 ```
 
-说明：这个题，可以使用双指针去解，但是，写起来比较恶心，使用下面的代码会漏场景。==> 因此，建议使用hash表解。
+说明：这个题，不可以使用双指针去解，使用下面的代码会漏场景。==> 解法还是采用上面的 👆
 
 ```python
 class Solution(object):
@@ -42,27 +42,27 @@ class Solution(object):
 class Solution(object):
     def threeSum(self, nums):
         # 两数之和扩展: 固定一个数nums[i]，求剩下区间[i+1, nlen-1]的两数之和
-        ret = []
+        ans = []
         nlen = len(nums)
         nums.sort() # 一定要先排序
 
         for i in range(nlen-2): # 固定一个值
-            if i>0 and nums[i]==nums[i-1]:  # 去重(固定的数不为同一个)
+            if i>0 and nums[i]==nums[i-1]:  # 去重1 (固定的数不为同一个)
                 continue
-            l, r = i+1, nlen-1  # 在[i+1, size-1]中查询，固定两个头尾指针l,r
+            # 固定两个头尾指针l,r = [i+1, size-)
+            l, r = i+1, nlen-1  
             while l<r:
                 sum = nums[i]+nums[l]+nums[r]
                 if sum == 0:
-                    ret.append([nums[i], nums[l], nums[r]])
+                    ans.append([nums[i], nums[l], nums[r]])
                     l+=1
-                    while l<r and nums[l]==nums[l-1]:  # 去重
+                    while l<r and nums[l]==nums[l-1]:  # 去重2
                         l+=1
-                        continue
                 elif sum > 0:
                     r-=1
                 else:
                     l+=1
-        return ret
+        return ans
 ```
 
 - 去重前提条件是有序，去重点见下
