@@ -407,12 +407,14 @@ binlog - 主要用作主从复制和即时点恢复
 
 (1) 慢查询配置：slow_query_log、slow_query_log_file、long_query_time
 
-(2) 慢查询日志分析工具mysqldumpslow：捕获前10条查询较慢的 mysqldumpslow -s at -t
-5 xxx.log
+(2) 慢查询日志分析工具mysqldumpslow：捕获前10条查询较慢的 mysqldumpslow -s at -t 5 xxx.log
 
-### 2. SQL语句优化
+### 2. SQL语句编优化
 
-消除子查询，改为关联查询
+   > 使用<u>join</u>来代替子查询
+   > 拆分大的delete或insert语句
+   > 可通过开启<u>慢查询</u>日志来找出较慢的SQL
+   > OR改写成IN：OR的效率是n级别，IN的效率是log(n)级别，in的个数建议控制在200以内
 
 ### 3. 没建立索引，就建立索引
 
