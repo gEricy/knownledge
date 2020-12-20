@@ -44,7 +44,7 @@ class Solution(object):
         # 两数之和扩展: 固定一个数nums[i]，求剩下区间[i+1, nlen-1]的两数之和
         ans = []
         nlen = len(nums)
-        nums.sort() # 一定要先排序
+        nums.sort() # 去重, 一定要先排序
 
         for i in range(nlen-2): # 固定一个值
             if i>0 and nums[i]==nums[i-1]:  # 去重1 (固定的数不为同一个)

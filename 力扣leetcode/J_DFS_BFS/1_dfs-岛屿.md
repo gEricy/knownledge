@@ -1,6 +1,6 @@
 
 
-## [DFS](https://leetcode-cn.com/problems/number-of-islands/solution/dao-yu-lei-wen-ti-de-tong-yong-jie-fa-dfs-bian-li-/) 深度优先遍历
+## [DFS](https://leetcode-cn.com/problems/number-of-islands/solution/dao-yu-lei-wen-ti-de-tong-yong-jie-fa-dfs-bian-li-/) 深度优先遍历
 
 下面是最简单的二叉树的前序遍历递归写法：
 
@@ -33,10 +33,10 @@ class Solution(object):
         if grid[i][j] != "1":           # 当前元素不是岛屿
             return
         grid[i][j] = "0"  # 访问当前位置后，就将其标为0，防止之后再次访问
-        self.dfs(grid, i+1, j)
-        self.dfs(grid, i, j+1)
-        self.dfs(grid, i-1, j)
-        self.dfs(grid, i, j-1)
+
+        for di, dj in [[0, 1], [0, -1], [1, 0], [-1, 0]]:
+            next_i, next_j = i + di, j + dj
+            self.dfs(grid, next_i, next_j)
 
     def numIslands(self, grid):
         self.m = len(grid)    # 行数
@@ -64,10 +64,12 @@ class Solution(object):
         if grid[i][j] != 1:  # 当前元素不是岛屿
             return 0
         grid[i][j] = 0  # 访问当前位置后，就将其标为0，防止之后再次访问
-        return 1 + self.dfs(grid, i+1, j) + \
-                   self.dfs(grid, i, j+1) + \
-                   self.dfs(grid, i-1, j) + \
-                   self.dfs(grid, i, j-1)
+        ans = 1
+        for di, dj in [[0, 1], [0, -1], [1, 0], [-1, 0]]:
+            next_i, next_j = i + di, j + dj
+            ans += self.dfs(grid, next_i, next_j)
+        return ans
+
 
     def maxAreaOfIsland(self, grid):
         self.m = len(grid)

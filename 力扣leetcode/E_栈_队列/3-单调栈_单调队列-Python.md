@@ -29,10 +29,10 @@ class Solution(object):
     def maxSlidingWindow(self, nums, k):
         size = len(nums)
         ans = []
-        queue = []  # 单调队列 (由大到小), 存放了下标
+        queue = []  # 单调队列 (由大到小), 存放了【下标】
         for r in range(size):  # 循环遍历
             # 1. 保持队列的单调性
-            while queue and nums[r] > nums[queue[-1]]:  # [5,3,2], 进入4, 要依次删除[2,3]
+            while queue and nums[r] > nums[queue[-1]]: # [5,3,2], 进入4, 要依次删除[2,3]
                 queue.pop(-1)
             # 2. 删除过期头部
             if queue and r-queue[0]+1 > k:  # 删除5
@@ -76,7 +76,7 @@ class Solution(object):
 class Solution(object):
     def dailyTemperatures(self, T):
         ans = [0] * len(T)  # 保存结果[0, 0, 0, ... ...]
-        stack = []  # 单调栈, 存放下标
+        stack = []  # 单调栈, 存放【下标】
         for i in range(len(T)):
             while stack and T[stack[-1]] < T[i]:  # 栈顶温度 < 当前温度
                 ans[stack[-1]] = i - stack[-1]    # 【出栈时】, 更新栈顶(下标位置)的结果值
