@@ -1,3 +1,21 @@
+### 2PC在SQL主从复制的应用
+
+主从复制：2PC+redo log+binlog
+
+- 引擎将数据，先写redo log，prepare阶段
+- 再由执行器写binlog，最后执行器调用引擎的事务提交，把之前写完的redo log改成commit阶段，此时，一次事务更新操作完成
+
+双1
+
+组提交
+
+
+
+---
+
+
+
+
 
 :sweat_smile: [主从复制的2种方式](https://blog.csdn.net/keil_wang/article/details/88669587)
 
