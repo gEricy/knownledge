@@ -1,4 +1,24 @@
 
+
+#### TCP序列号回绕问题
+
+一个tcp流的初始序列号（ISN）并不是从0开始的，而是采用一定的随机算法产生的，因此ISN可能很大（比如(2^32-10)），因此同一个tcp流的seq号可能会回绕到0。
+
+而我们tcp对于丢包和乱序等问题的判断都是依赖于序列号大小比较的。此时就出现了所谓的tcp序列号回绕问题。
+
+内核解决办法：
+```c
+static inline int before(__u32 seq1, __u32 seq2)  // __u32 无符号整型
+{
+return (__s32)(seq1-seq2) < 0;  // __s32有符号整形
+}
+#define after(seq2, seq1) before(seq1, seq2)
+```
+
+---
+
+
+
 #### bind
 
 bind：绑定的是IP/port
