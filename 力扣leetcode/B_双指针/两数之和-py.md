@@ -49,7 +49,7 @@ class Solution(object):
         for i in range(nlen-2): # 固定一个值
             if i>0 and nums[i]==nums[i-1]:  # 去重1 (固定的数不为同一个)
                 continue
-            # 固定两个头尾指针l,r = [i+1, size-)
+            # 固定两个头尾指针l,r = [i+1, size)
             l, r = i+1, nlen-1  
             while l<r:
                 sum = nums[i]+nums[l]+nums[r]

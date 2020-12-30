@@ -9,7 +9,7 @@ python语法，弹出list的首元素：list.pop(0)
 
 
 
-#### 无重复字符的最长字串 （该题解法不是最优解）
+#### 无重复字符的最长字串 （该题解法不是最优解）:slightly_smiling_face:
 
 给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。
 
@@ -20,13 +20,10 @@ class Solution(object):
         mret = 0
 
         for ch in s:
-            if ch not in win:
-                win.append(ch)
-                mret = max(mret, len(win))
-            else:
-                while ch in win: # 每次都查找窗口，时间复杂度过大！
-                    win.pop(0)   # 弹出队头 list.pop(0); list.pop()默认弹出队尾
-                win.append(ch)
+            while ch in win: # 每次都查找窗口，时间复杂度过大！
+                win.pop(0)   # 弹出队头 list.pop(0); list.pop()默认弹出队尾
+            win.append(ch)
+            mret = max(mret, len(win))
         return mret
 ```
 
@@ -112,9 +109,12 @@ class Solution(object):
                 queue.pop(0)
             # 3. r进入窗口
             queue.append(r)
-            # 4. 当窗口大小 >= k时, 保存结果
+            # 4. 当r+1 >= k时, 此时必然形成窗口,保存结果
             if r+1 >= k:
                 ans.append(nums[queue[0]])
         return ans
 ```
 
+
+
+#### 59-队列的最大值

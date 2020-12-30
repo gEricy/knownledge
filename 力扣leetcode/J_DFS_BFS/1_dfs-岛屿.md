@@ -32,6 +32,7 @@ class Solution(object):
             return
         if grid[i][j] != "1":           # 当前元素不是岛屿
             return
+        
         grid[i][j] = "0"  # 访问当前位置后，就将其标为0，防止之后再次访问
 
         for di, dj in [[0, 1], [0, -1], [1, 0], [-1, 0]]:
@@ -63,7 +64,9 @@ class Solution(object):
             return 0
         if grid[i][j] != 1:  # 当前元素不是岛屿
             return 0
+        
         grid[i][j] = 0  # 访问当前位置后，就将其标为0，防止之后再次访问
+        
         ans = 1
         for di, dj in [[0, 1], [0, -1], [1, 0], [-1, 0]]:
             next_i, next_j = i + di, j + dj

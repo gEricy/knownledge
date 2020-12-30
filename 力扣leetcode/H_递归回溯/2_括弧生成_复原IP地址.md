@@ -29,24 +29,79 @@ class Solution(object):
     # 1.左括弧+右括弧，共有2n个括弧时，一共能构成哪些
     # 2.不满足括弧匹配的进行剪枝
     def generateParenthesis(self, n):
-        ret = []
+        ans = []
         land = ""
 
-        def backtrace(n, left, right, land): # left,right 左括弧数量, 右括弧的数量
+        def backtrace(land, left, right): # left,right 左括弧数量, 右括弧的数量
             if left + right == 2*n:  # 递归终止条件: 左右括弧总数量 == 2n
-                ret.append(land[:])
+                ans.append(land[:])
                 return
 
             # 添加‘(’的条件: 左括弧 < n
             if left < n: 
-                backtrace(n, left+1, right, land+"(")
+                backtrace(land+'(', left+1, right)
+                
             # 添加‘)’的条件: 左括弧>右括弧 && 右括弧 < n
             if left > right and right < n:  
-                backtrace(n, left, right+1, land+")")
+                backtrace(land+")", left, right+1)
 
-        backtrace(n, 0, 0, land)
+        backtrace(land, 0, 0)
+        return ans
+```
+
+
+
+#### [17. 电话号码的字母组合](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/)
+
+给定一个仅包含数字 `2-9` 的字符串，返回所有它能表示的字母组合。
+
+给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
+
+```c
+输入："23"
+输出：["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+```
+
+```python
+class Solution(object):
+    hash = {
+        '2' : "abc",
+        '3' : "def",
+        '4' : "ghi",
+        '5' : "jkl",
+        '6' : "mno",
+        '7' : "pqrs",
+        '8' : "tuv",
+        '9' : "wxyz"
+    }
+    
+    def letterCombinations(self, digits):
+        if digits == "":
+            return []
+
+        digits_list = []
+        size = len(digits)
+        
+        # 将数字字符串，解析成键盘上对应的字母字符串, "23" --> ["abc", "def"]
+        # digits --> digits_list
+        for d in digits:  
+            digits_list.append(self.hash[d])
+        
+        ret = []
+        land = ""
+        def backtrace(land, digits_list, idx):   # idx表示第几个字符串
+            if len(land) == size:  # if idx == size:
+                ret.append(land)
+                return
+
+            for ch in digits_list[idx]: 
+                backtrace(land + ch, digits_list, idx+1) # 选择列表: 第一次从digits_list[0]选择一个, 递归时, 从digits_list[1]中选择一个, ... ...
+        
+        backtrace(land, digits_list, 0)
         return ret
 ```
+
+
 
 #### [93. 复原IP地址](https://leetcode-cn.com/problems/restore-ip-addresses/)
 

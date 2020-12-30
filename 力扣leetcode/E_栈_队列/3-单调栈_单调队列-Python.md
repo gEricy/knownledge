@@ -61,7 +61,7 @@ class Solution(object):
 
 :smile_cat:下面的题目都是 `单调栈`
 
-#### [739. 每日温度](https://leetcode-cn.com/problems/daily-temperatures/)?:slightly_smiling_face:
+#### [739. 每日温度](https://leetcode-cn.com/problems/daily-temperatures/):slightly_smiling_face:
 
 ```python
 请根据每日气温列表，重新生成一个列表。对应位置的输出为：要想观测到更高的气温，至少需要等待的天数。如果气温在这之后都不会升高，请在该位置用 0 来代替。
@@ -104,7 +104,7 @@ class Solution(object):
     def removeKdigits(self, num, k):
         stack = []
         for e in num:
-            while stack and stack[-1] > e and k:  # 单调栈
+            while stack and stack[-1] > e and k:  # 单调栈 (相反)
                 stack.pop()
                 k -= 1
             stack.append(e)  # 始终都将当前元素加入栈
@@ -175,7 +175,7 @@ class Solution(object):
         stack = []  # 栈 (栈中存放着下标)
         for i in range(size * 2):
             while stack != [] and db_nums[stack[-1]] < db_nums[i]:
-                ret[stack[-1]] = db_nums[i]  # 保存结果
+                ret[stack[-1]] = db_nums[i]  # 出栈钱，保存结果
                 stack.pop()
             if i < size: # 虚拟节点不入栈
                 stack.append(i)
