@@ -31,31 +31,33 @@ Top5: 971，845，691，558，538
 using namespace std;
 
 vector<int> getTopK(vector<vector<int>> vec,int K){
-	vector<int> ret;
+	vector<int> ans;
 	priority_queue<pair<int,int>> PQ;  // pair: <nums[i], 该数所属第几个数组>
     
 	//用vec[i].back()，每个数组的最大的数，建立大根堆PQ
 	for (int i = 0; i < vec.size(); i++){
-        // 将每个有序数组最后一个元素，弹出，进入PQ
+        // 将每个有序数组最后一个元素插入PQ & 弹出
 		PQ.emplace(vec[i].back(), i); vec[i].pop_back(); 
 	}
     
-	while(K-- && !PQ.empty())
+	while(!PQ.empty())
     {
-		//弹出PQ堆顶元素top
-		pair<int, int> top = PQ.top(); PQ.pop();
-		ret.push_back(top.first);
+		pair<int, int> top = PQ.top(); PQ.pop(); //弹出PQ堆顶元素top
+		ans.push_back(top.first);
         
-		//将top.second数组的末尾元素，加入PQ: 需要判断是否为空
+        if (--K == 0) {
+            break;
+        }
+
 		int index = top.second;
-		if (!vec[index].empty()){
-			PQ.emplace(vec[index].back(), index);
+		if (!vec[index].empty()){ // 数组不为空
+			PQ.emplace(vec[index].back(), index); // 数组最后一个元素插入PQ & 弹出
 			vec[index].pop_back();
 		}
 	}
-	return ret;
+    
+	return ans;
 }
-
 //求K个数组的前K大数
 int main(){
 	vector<vector<int>> vec = {
