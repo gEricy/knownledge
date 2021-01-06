@@ -82,15 +82,11 @@ public:
         int size = m+n-1; /* 从后向前赋值 */
         
         int r1 = m-1, r2 = n-1;
-        while(r1>=0 && r2>=0){  // 注意：循环条件 >= 0
-            if (nums1[r1] > nums2[r2]){
-                nums1[size--] = nums1[r1--];
-            }
-            else{
-                nums1[size--] = nums2[r2--];
-            }
+        while(r1>=0 && r2>=0) {
+            nums1[size--] = nums1[r1] > nums2[r2] ? nums1[r1--] : nums2[r2--];
         }
-        while(r2>=0){  // 特殊处理: 如果第二个数组中元素有残留，要拷贝到nums1中
+        
+        while(r2>=0){  // 特殊处理: 如果第二个数组中元素有残留，要拷贝到结果数组nums1中
             nums1[size--] = nums2[r2--];
         }
     }
