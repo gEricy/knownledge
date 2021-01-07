@@ -16,15 +16,15 @@ python语法，弹出list的首元素：list.pop(0)
 ```python
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
-        win = []
-        mret = 0
-
-        for ch in s:
-            while ch in win: # 每次都查找窗口，时间复杂度过大！
-                win.pop(0)   # 弹出队头 list.pop(0); list.pop()默认弹出队尾
-            win.append(ch)
-            mret = max(mret, len(win))
-        return mret
+        hash = {}  # 元素, 下标
+        l = 0
+        ans = 0
+        for r in range(len(s)):
+            if s[r] in hash:
+                l = max(l, hash[s[r]] + 1)
+            hash[s[r]] = r
+            ans = max(ans, r-l+1)
+        return ans
 ```
 
 
