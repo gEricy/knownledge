@@ -9,21 +9,21 @@ python语法，弹出list的首元素：list.pop(0)
 
 
 
-#### 无重复字符的最长字串 （该题解法不是最优解）:slightly_smiling_face:
+#### 无重复字符的最长字串 :slightly_smiling_face:
 
 给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。
 
 ```python
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
-        hash = {}  # 元素, 下标
-        l = 0
         ans = 0
+        hash = {}
+        l = 0
         for r in range(len(s)):
             if s[r] in hash:
-                l = max(l, hash[s[r]] + 1)
-            hash[s[r]] = r
-            ans = max(ans, r-l+1)
+                l = max(l, hash[s[r]]+1)  # 更新左下标 = 当前左下标的位置+1
+            hash[s[r]] = r         # 当前新元素进入hash
+            ans = max(ans, r-l+1)  # 更新结果ans
         return ans
 ```
 
