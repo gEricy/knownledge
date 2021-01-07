@@ -16,8 +16,7 @@ python语法，弹出list的首元素：list.pop(0)
 ```python
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
-        ans = 0
-        hash = {}
+        hash = {}   # {元素, 元素所处下标} = {s[i], i}
         l = 0
         for r in range(len(s)):
             if s[r] in hash:
