@@ -64,41 +64,33 @@ class Solution(object):
 
 ```python
 class Solution(object):
-    hash = {
-        '2' : "abc",
-        '3' : "def",
-        '4' : "ghi",
-        '5' : "jkl",
-        '6' : "mno",
-        '7' : "pqrs",
-        '8' : "tuv",
-        '9' : "wxyz"
-    }
-    
     def letterCombinations(self, digits):
+        hash = {
+            '2': "abc",
+            '3': "def",
+            '4': "ghi",
+            '5': "jkl",
+            '6': "mno",
+            '7': "pqrs",
+            '8': "tuv",
+            '9': "wxyz"
+        }
         if digits == "":
             return []
-
-        digits_list = []
         size = len(digits)
-        
-        # 将数字字符串，解析成键盘上对应的字母字符串, "23" --> ["abc", "def"]
-        # digits --> digits_list
-        for d in digits:  
-            digits_list.append(self.hash[d])
-        
-        ret = []
+        ans = []
         land = ""
-        def backtrace(land, digits_list, idx):   # idx表示第几个字符串
-            if len(land) == size:  # if idx == size:
-                ret.append(land)
-                return
 
-            for ch in digits_list[idx]: 
-                backtrace(land + ch, digits_list, idx+1) # 选择列表: 第一次从digits_list[0]选择一个, 递归时, 从digits_list[1]中选择一个, ... ...
-        
-        backtrace(land, digits_list, 0)
-        return ret
+        def backtrace(land, start):
+            if len(land) == size:
+                ans.append(land)
+                return
+            for idx in range(start, size):
+                for ch in hash[digits[idx]]:
+                    backtrace(land + ch, idx + 1)
+
+        backtrace(land, 0)
+        return ans
 ```
 
 
