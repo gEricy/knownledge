@@ -24,31 +24,24 @@ void dfs(TreeNode root) {
 
 ```python
 class Solution(object):
-    def in_area(self, i, j):
-        return i>=0 and i<self.m and j>=0 and j<self.n
-
-    def dfs(self, grid, i, j):
-        if self.in_area(i,j) == False:  # 越界
-            return
-        if grid[i][j] != "1":           # 当前元素不是岛屿
-            return
-        
-        grid[i][j] = "0"  # 访问当前位置后，就将其标为0，防止之后再次访问
-
-        for di, dj in [[0, 1], [0, -1], [1, 0], [-1, 0]]:
-            next_i, next_j = i + di, j + dj
-            self.dfs(grid, next_i, next_j)
-
     def numIslands(self, grid):
-        self.m = len(grid)    # 行数
-        self.n = len(grid[0]) # 列数
+        m, n = len(grid), len(grid[0])
+        def dfs(i, j):
+            if i >= m or j >= n:   # 越界
+                return
+            if grid[i][j] != '1':  # 当前元素不是岛屿
+                return
+            grid[i][j] = '0'  # 访问当前位置后，就将其标为0，防止之后再次访问
+            for di, dj in [[0, 1], [0, -1], [1, 0], [-1, 0]]:
+                next_i, next_j = i + di, j + dj
+                dfs(next_i, next_j)
 
         ans = 0
-        for i in range(self.m):
-            for j in range(self.n):
-                if grid[i][j] == "1":
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == '1':
                     ans += 1
-                    self.dfs(grid, i, j)
+                    dfs(i, j)
         return ans
 ```
 
@@ -56,33 +49,24 @@ class Solution(object):
 
 ```python
 class Solution(object):
-    def in_area(self, i, j):
-        return i>=0 and i<self.m and j>=0 and j<self.n
-
-    def dfs(self, grid, i, j):
-        if self.in_area(i,j) == False:  # 越界
-            return 0
-        if grid[i][j] != 1:  # 当前元素不是岛屿
-            return 0
-        
-        grid[i][j] = 0  # 访问当前位置后，就将其标为0，防止之后再次访问
-        
-        ans = 1
-        for di, dj in [[0, 1], [0, -1], [1, 0], [-1, 0]]:
-            next_i, next_j = i + di, j + dj
-            ans += self.dfs(grid, next_i, next_j)
-        return ans
-
-
     def maxAreaOfIsland(self, grid):
-        self.m = len(grid)
-        self.n = len(grid[0])
-
+        m, n = len(grid), len(grid[0])
+        def dfs(i, j):
+            if i >= m or j >= n:  # 越界
+                return 0
+            if grid[i][j] != 1:  # 当前元素不是岛屿
+                return 0
+            grid[i][j] = 0
+            area = 1  # 初始值为1
+            for di, dj in [[0, 1], [0, -1], [1, 0], [-1, 0]]:
+                next_i, next_j = i + di, j + dj
+                area += dfs(next_i, next_j)
+            return area
         ans = 0
-        for i in range(self.m):
-            for j in range(self.n):
+        for i in range(m):
+            for j in range(n):
                 if grid[i][j] == 1:
-                    ans = max(ans, self.dfs(grid, i, j))
+                    ans = max(ans, dfs(i, j))
         return ans
 ```
 
