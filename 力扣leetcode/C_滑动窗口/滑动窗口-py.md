@@ -101,10 +101,10 @@ class Solution(object):
         queue = []  # 单调队列(由大到小), 保存了“下标”
         for r in range(len(nums)):
             # 1. 保证队列单调
-            while queue != [] and nums[r] > nums[queue[-1]]:  # 当前元素nums[r] > 队尾元素: 移除队尾
+            while not queue and nums[r] > nums[queue[-1]]:  # 当前元素nums[r] > 队尾元素: 移除队尾
                 queue.pop(-1)
             # 2. 删除过期队头元素  [注]: 2,3步骤可交换
-            if queue != [] and r-queue[0]+1 > k:
+            if not queue and r-queue[0]+1 > k:
                 queue.pop(0)
             # 3. r进入窗口
             queue.append(r)
